@@ -1,5 +1,9 @@
 This repository features a Python script designed to calculate the dynamical electron correlation energy of the Lithium atom ($Z=3$) ground state, utilizing Second-Order Perturbation Theory. Specifically, it evaluates the spatial transition integrals for single-electron virtual excitations ($2s \to 3s, 4s, 5s$, and $6s$) by applying the `scipy.integrate.dblquad` adaptive quadrature algorithm.
 
+## Adaptive Quadrature Algorithm
+
+The scipy.integrate.dblquad function utilizes an adaptive quadrature algorithm that dynamically refines its integration step size in regions where the mathematical function changes rapidly. This method was specifically chosen because it evaluates the entire spatial domain from zero to infinity, completely eliminating the truncation and discretization errors inherent to fixed-grid approaches. As a result, it seamlessly captures both the ultra-sharp probability density peak of the $1s$ core electron near the nucleus and the highly diffuse exponential tails of upper virtual orbitals simultaneously.
+
 ## Computational Approach
 
 This computational approach executes a double numerical integration across the entire spatial domain (from zero to infinity, `np.inf`), dynamically adjusting its mathematical step size to ensure a better precision. Consequently, it achieves high precision and accurately models complex quantum mechanical behaviors. These include effectively capturing the diffuse exponential tails of higher virtual states (such as the $6s$ orbital) alongside the highly concentrated probability density peak of the $1s$ core electron.
