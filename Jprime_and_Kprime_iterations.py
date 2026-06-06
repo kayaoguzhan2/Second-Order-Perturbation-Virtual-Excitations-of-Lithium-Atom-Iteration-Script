@@ -43,7 +43,7 @@ def compute_integral(n):
     )
     
     K_val, _ = dblquad(
-        lambda r2, r1: 2*R_ns(r1, n) * R_ns(r1, 1) * multipole_term(r1, r2) * R_ns(r2, 1) * R_ns(r2, 2) * (r1**2) * (r2**2),
+        lambda r2, r1: R_ns(r1, n) * R_ns(r1, 1) * multipole_term(r1, r2) * R_ns(r2, 1) * R_ns(r2, 2) * (r1**2) * (r2**2),
         0, np.inf, lambda r1: 0, lambda r1: np.inf, epsabs=1e-5, epsrel=1e-5
     )
     return J_val, K_val
