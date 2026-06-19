@@ -12,12 +12,10 @@ r = np.linspace(0, 8, 1000)
 Z = 3  # The atomic number of Lithium
 
 # Calculate the probability density for the 1s and 2s orbitals 
-# assuming no electron interaction (the starting baseline)
 P1s_01 = (r**2) * (R_ns(1, Z, r)**2)
 P2s_01 = (r**2) * (R_ns(2, Z, r)**2)
 
 # These coefficients determine how much the higher energy virtual states (3s, 4s, etc.)
-# mix into the 2s orbital to account for electron repulsion (second-order correction)
 c_coeffs = [(2*4.125 - 0.916) / -17.004, (2*2.344 - 0.582) / -22.957, 
             (2*1.590 - 0.413) / -25.712, (2*1.176 - 0.312) / -27.209]
 
