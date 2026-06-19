@@ -1,4 +1,4 @@
-This repository features a Python script designed to calculate the dynamical electron correlation energy of the Lithium atom ($Z=3$) ground state, utilizing Second-Order Perturbation Theory. Specifically, it evaluates the spatial transition integrals for single-electron virtual excitations ($2s \to 3s, 4s, 5s$, and $6s$) by applying the `scipy.integrate.dblquad` adaptive quadrature algorithm.
+In this repository, `Jprime_and_Kprime_Iterations.py` script is designed to calculate the dynamical electron correlation energy of the Lithium atom ($Z=3$) ground state, utilizing Second-Order Perturbation Theory. Specifically, it evaluates the spatial transition integrals for single-electron virtual excitations ($2s \to 3s, 4s, 5s$, and $6s$) by applying the `scipy.integrate.dblquad` adaptive quadrature algorithm. The `Radial_Probability_Densities.py` script is designed to plot radial probability densities for each perturbation correction and for the Variational Method. 
 
 ## Adaptive Quadrature Algorithm
 
@@ -17,23 +17,26 @@ This computational approach executes a double numerical integration across the e
 * **$K'$** (Exchange Integral): Denotes the quantum mechanical spatial exchange interaction resulting from the Pauli Exclusion Principle.
 * **$\Delta E$** (Energy Denominator): The zeroth-order energy difference between the ground and excited configurations.
 * **$E^{(2)}$**: The final second-order energy contribution, computed via the Rayleigh-Schrödinger formula.
-## Wavefunction Visualization and Perturbation Analysis
+  
+#### Wavefunction Visualization and Perturbation Analysis
 
-This section of the script visualizes the radial probability density of the Lithium atom's ground and perturbed states, illustrating how electron correlation and screening modify the spatial distribution of the wavefunctions.
+This part of the script shows the radial probability density of the Lithium atom's ground and perturbed states. It visually explains how electron correlation and screening effects change the spatial distribution of the wavefunctions.
 
 ### Purpose and Physical Mechanism
 
-The primary objective is to visually contrast the independent-particle model (zeroth-order baseline) against the correlated model (second-order perturbation theory) and the optimized variational model. In the independent-particle baseline, electrons are assumed to experience an unscreened nuclear charge ($Z=3$), completely neglecting inter-electronic repulsion. 
+The main goal is to visually compare the independent-particle model (zeroth-order baseline) with the correlated model (second-order perturbation theory) and the optimized variational model. 
 
-To physically account for this dynamical correlation, the second-order perturbation approach admixes higher-energy virtual orbital configurations ($3s, 4s, 5s, 6s$) into the baseline $2s$ state. This expansion deforms the wavefunction to minimize electron-electron repulsion. This perturbed distribution is graphically compared against the variational method, which uses effective nuclear charges to simulate static inner-shell screening effects.
+In the independent-particle baseline, we assume the electrons feel the full nuclear charge ($Z=3$) and we completely ignore the repulsion between electrons. To include this dynamical correlation in our physics model, the second-order perturbation approach mixes higher-energy virtual orbitals ($3s, 4s, 5s, 6s$) into the baseline $2s$ state. This mixing changes the shape of the wavefunction to reduce the electron-electron repulsion. We then compare this new distribution to the variational method, which uses effective nuclear charges to simulate how inner-shell electrons shield the nucleus.
 
 ### Computational Approach
 
-The script generates a precise radial grid extending from the nucleus outwards to $8$ Bohr radii. It evaluates the analytic hydrogenic wavefunctions, executes a linear combination weighted by the calculated first-order perturbation coefficients, and applies numerical integration to re-normalize the perturbed state. Finally, it maps all probability profiles simultaneously to demonstrate orbital relaxation and contraction.
+The script creates a spatial grid starting from the nucleus up to $8$ Bohr radii. It calculates the analytical hydrogenic wavefunctions, creates a linear combination using the calculated first-order perturbation coefficients, and uses numerical integration to re-normalize the new state. Finally, it plots all probability curves together to show how the orbitals relax and contract.
 
 ### Mathematical Variables and Functions
 
-* **$R_{ns}(n, Z, r)$**: The radial part of the hydrogenic wavefunction. It represents the probability amplitude of finding an electron at a radial distance $r$ for a given principal quantum number $n$ and nuclear charge $Z$.
-* **$P(r)$**: The radial probability density, defined as $P(r) = r^2 |R_{ns}(r)|^2$. It describes the actual probability of finding the electron within a spherical shell of radius $r$ and thickness $dr$.
-* **$c$** (`c_coeffs`): The first-order correction coefficients to the wavefunction. They dictate the amplitude weight (admixture) of each virtual $ns$ state mixing into the perturbed $2s$ state to minimize Coulomb repulsion.
-* **$Z_{eff}$**: The effective nuclear charge. Used in the variational approach to model the electrostatic shielding of the nucleus caused by inner-shell electrons ($Z_{eff} = 2.68$ for $1s$, $Z_{eff} = 1.87$ for $2s$).
+* **$R_{ns}(n, Z, r)$**: The radial part of the hydrogenic wavefunction. It shows the probability amplitude of finding an electron at a radial distance $r$. Here, $n$ is the principal quantum number and $Z$ is the nuclear charge.
+* **$P(r)$**: The radial probability density. It describes the real probability of finding the electron inside a spherical shell of radius $r$ and thickness $dr$. The formula is:
+  $$P(r) = r^2 |R_{ns}(r)|^2$$
+* **$c$** (`c_coeffs`): The first-order correction coefficients. They show how much each virtual $ns$ state mixes into the $2s$ state to lower the Coulomb repulsion.
+* **$Z_{eff}$**: The effective nuclear charge. The variational approach uses it to model how inner-shell electrons shield the electrostatic pull of the nucleus ($Z_{eff} = 2.68$ for the $1s$ orbital, $Z_{eff} = 1.87$ for the $2s$ orbital).
+
